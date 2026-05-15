@@ -9,7 +9,8 @@ const BookingBtn = ({p,id}) => {
     const a = async () => {
 
         const token = await authClient.token()
-        console.log(token)
+        const t = token?.data
+        console.log(t)
 
         const b = {
             category: p.category,
@@ -21,7 +22,7 @@ const BookingBtn = ({p,id}) => {
             imageUrl: p.imageUrl,
             price: p.price,
         }
-        await bookingPost(b)
+        await bookingPost(b,t)
     }
 
     return (

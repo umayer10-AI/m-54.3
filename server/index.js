@@ -19,9 +19,17 @@ const client = new MongoClient(uri, {
     }
 });
 
+const JWKS = createRemoteJWKSet(
+    new URL(`${process.env.NEXT}/api/auth/jwks`)
+)
+
 const verifyData = async (req,res,next) => {
     const header = req.headers.authorization
-    console.log(header)
+    if(!header){
+        res.status(401).json({message: "Unauthorized"})
+    }
+    const token = header.split(' ')[1]
+    console.log(token)
     next()
 }
 

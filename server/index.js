@@ -78,7 +78,7 @@ const run = async () => {
             res.json(result)
         })
 
-        app.put('/destination/:id', async (req,res) => {
+        app.put('/destination/:id',verifyData, async (req,res) => {
             const {id} = req.params
             const filter = {
                 _id: new ObjectId(id)

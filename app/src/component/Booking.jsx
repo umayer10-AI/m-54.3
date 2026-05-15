@@ -11,9 +11,9 @@ const Booking = ({p}) => {
     const a = async () => {
 
         const token = await authClient.token()
-        console.log(token)
+        const t = token?.data
 
-        await deleteBooking(p._id)
+        await deleteBooking(p._id,t)
     }
 
     return (

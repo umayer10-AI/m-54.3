@@ -10,6 +10,7 @@ const BookingBtn = ({p,id}) => {
 
         const token = await authClient.token()
         const t = token?.data
+        // console.log(t)
 
         const b = {
             category: p.category,

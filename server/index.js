@@ -63,13 +63,13 @@ const run = async () => {
             res.json(result)
         })
 
-        app.post('/destination', async (req,res) => {
+        app.post('/destination',verifyData, async (req,res) => {
             const newUSer = req.body
             const result = await userCollection.insertOne(newUSer)
             res.send(result)
         })
 
-        app.delete('/destination/:id', async (req,res) => {
+        app.delete('/destination/:id',verifyData, async (req,res) => {
             const {id} = req.params
             const query = {
                 _id: new ObjectId(id)
@@ -109,7 +109,7 @@ const run = async () => {
             res.send(result)
         })
 
-        app.delete('/booking/:id', async (req,res) => {
+        app.delete('/booking/:id',verifyData, async (req,res) => {
             const {id} = req.params
             const result = await booking.deleteOne({_id: new ObjectId(id)})
             res.send(result)

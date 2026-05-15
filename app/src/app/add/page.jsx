@@ -1,5 +1,6 @@
 "use client"
 import { createData } from '@/lib/action';
+import { authClient } from '@/lib/auth-client';
 import { Button, FieldError, Input, Label, ListBox,Select, TextArea, TextField } from '@heroui/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,8 +10,11 @@ const AddPage = () => {
     const {register,handleSubmit,formState: { errors }} = useForm()
 
     const a = async (v) => {
-        console.log(v)
-        await createData(v)
+
+        const token = await authClient.token()
+        const t = token?.data
+
+        await createData(v,t)
     }
 
     return (
